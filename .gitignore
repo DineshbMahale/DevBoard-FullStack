@@ -32,7 +32,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Angular frontend
+DevBoardFrontend/node_modules/
+DevBoardFrontend/dist/
+DevBoardFrontend/.angular/
 
+# Generic node
+node_modules/
 #===================================
 #For .NET
 #===================================
