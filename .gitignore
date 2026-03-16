@@ -1,0 +1,85 @@
+
+#===============================
+#For Angular
+#===============================
+
+# Angular specific
+/dist/
+/out-tsc/
+/tmp/
+/coverage/
+/e2e/test-output/
+/.angular/
+.angular/
+
+# Node modules and dependency files
+/node_modules/
+/package-lock.json
+/yarn.lock
+
+# Environment files
+/.env
+
+# Angular CLI and build artefacts
+/.angular-cli.json
+/.ng/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+#===================================
+#For .NET
+#===================================
+
+
+## Core .NET Exclusions
+[Bb]in/
+[Oo]bj/
+[Tt]est[Rr]esult*/
+
+## User-specific files (Visual Studio)
+.vs/
+.vscode/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+
+## Sensitive Data & Config
+# Keep your main appsettings.json, but ignore development secrets
+appsettings.Development.json
+appsettings.Local.json
+UserSecrets/
+.env
+
+## Databases & Storage
+*.db
+*.s3db
+*.sqlite
+*.mdf
+*.ldf
+
+## Entity Framework Tools
+# Generally, you keep migrations, but ignore the design-time cache
+*.jfm
+
+## Publishing & Build Artifacts
+publish/
+bin/Debug/
+bin/Release/
+*.release.config
+*.deploy.config
+
+## Operating System Files
+.DS_Store
+Thumbs.db
+
+## Logs
+logs/
+*.log

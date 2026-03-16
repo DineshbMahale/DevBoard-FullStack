@@ -1,0 +1,103 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #f4f7f6;
+  min-height: 400px;
+}
+
+.profile-card {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #3f51b5;
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+.user-name {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.user-tagline {
+  color: #777;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1.5rem;
+  padding: 1rem 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.stat-value {
+  display: block;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #3f51b5;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.bio {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.profile-footer {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-primary {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #303f9f;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid #3f51b5;
+  color: #3f51b5;
+}
+
+.btn-outline:hover {
+  background-color: #3f51b5;
+  color: white;
+}

@@ -1,0 +1,30 @@
+<div class="user-list-container">
+  <div class="list-header">
+    <h2>User Directory</h2>
+    <button class="toggle-btn" [class.active-btn]="showInactive" (click)="toggleInactive()">
+      {{ showInactive ? 'Hide Inactive' : 'Show Inactive' }}
+    </button>
+  </div>
+
+  <div class="search-wrapper">
+    <input 
+      type="text" 
+      class="search-input"
+      placeholder="Search users by name..."
+      [(ngModel)]="searchText"
+    />
+  </div>
+
+  <ul class="user-list">
+    <li *ngFor="let user of users | search:searchText" class="user-item">
+      <div class="user-info" *ngIf="user.active || showInactive">
+        <span class="user-name">{{ user.name | capitalize }}</span>
+        
+        <div class="status-group">
+          <span *ngIf="!user.active" class="status-badge inactive">Inactive</span>
+          <span *ngIf="user.active" class="status-badge active">Active</span>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
