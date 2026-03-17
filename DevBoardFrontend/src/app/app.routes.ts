@@ -1,14 +1,19 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './features/auth/login/login';
-import { authGuard } from './core/guards/auth-guard';
-import {Profile} from './features/profile/profile'
-import { UserDashboard } from './features/dashboard/dashboard';
-import { UserList } from './features/user-list/user-list';
+import { authGuard } from './guard/auth-guard';
+import {Profile} from './components/profile/profile'
+import { UserDashboard } from './components/dashboard/dashboard';
+import { UserListComponent } from './components/user-list/user-list';
+import { Signin } from './components/signin/signin';
+import { Signup } from './components/signup/signup';
 
 export const routes: Routes = [
      {
-        path: 'login',
-        component: LoginComponent
+        path: 'signin',
+        component: Signin
+    },
+    {
+        path: 'signup',
+        component: Signup
     },
     {
         path: 'dashboard',
@@ -23,11 +28,11 @@ export const routes: Routes = [
     },
     {
         path:'userList',
-        component:UserList
+        component:UserListComponent
     },
     {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'signin',
         pathMatch: 'full'
     }
 

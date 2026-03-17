@@ -17,12 +17,12 @@
 
   <ul class="user-list">
     <li *ngFor="let user of users | search:searchText" class="user-item">
-      <div class="user-info" *ngIf="user.active || showInactive">
+      <div class="user-info" *ngIf="user.isActive || showInactive">
         <span class="user-name">{{ user.name | capitalize }}</span>
         
         <div class="status-group">
-          <span *ngIf="!user.active" class="status-badge inactive">Inactive</span>
-          <span *ngIf="user.active" class="status-badge active">Active</span>
+          <span *ngIf="!user.isActive" class="status-badge inactive">Inactive</span>
+          <span *ngIf="user.isActive" class="status-badge active">Active</span>
         </div>
       </div>
     </li>

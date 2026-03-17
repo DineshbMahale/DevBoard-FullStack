@@ -1,0 +1,72 @@
+<div class="signup-page">
+  <div class="signup-container">
+    <header class="form-header">
+      <h1>Create Account</h1>
+    </header>
+
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmitSignUpForm()" class="modern-form">
+      <div class="form-grid">
+        <div class="input-group">
+          <label for="firstName">First Name<span>*</span></label>
+          <input type="text" id="firstName" formControlName="firstName" placeholder="John">
+        </div>
+
+        <div class="input-group">
+          <label for="secondName">Last Name<span>*</span></label>
+          <input type="text" id="secondName" formControlName="secondName" placeholder="Doe">
+        </div>
+
+        <div class="input-group">
+          <label for="role">Role<span>*</span></label>
+          <select id="role" formControlName="roles">
+            <option [disabled]="true" [selected]="true" value="">Select Role</option>
+            <option value="USER">User</option>
+            <option value="ADMIN">Admin</option>
+          </select>
+        </div>
+
+
+        <div class="input-group">
+          <label for="email">Email Address<span>*</span></label>
+          <input type="email" id="email" formControlName="email" placeholder="john@example.com">
+        </div>
+
+        <div class="input-group">
+          <label for="userName">Username<span>*</span></label>
+          <input type="text" id="userName" formControlName="userName" placeholder="johndoe88">
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password<span>*</span></label>
+          <input type="password" id="password" formControlName="password" placeholder="••••••••">
+        </div>
+
+        <div class="input-group">
+          <label for="confirmPassword">Confirm Password<span>*</span></label>
+          <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="••••••••">
+        </div>
+      </div>
+
+      <div class="checkbox-group">
+        <label class="checkbox-container">
+          <input type="checkbox" formControlName="termsAndConditions">
+          <span class="checkmark"></span>
+          <span class="label-text">
+            I agree to the <a (click)="openDialog()" class="link">Terms & Conditions</a>
+          </span>
+        </label>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary" [disabled]="signUpForm.invalid || !signUpForm.value.termsAndConditions">
+          Create Account
+        </button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+      </div>
+
+      <footer class="form-footer">
+        <p>Already have an account? <a routerLink="/signin" class="link">Sign in</a></p>
+      </footer>
+    </form>
+  </div>
+</div>

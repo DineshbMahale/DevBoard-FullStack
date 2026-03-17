@@ -22,7 +22,6 @@ namespace DevBoardBackend.Controllers
 
 
         //creating a demo user list 
-        //creating a demo user list 
         List<User> users = new List<User>()
         {
              new User{ Id=1, Username="admin", Password="1234", Role="Admin"},

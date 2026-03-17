@@ -1,0 +1,54 @@
+<div class="login-page">
+  <div class="login-box">
+    <div class="login-visual">
+      <div class="visual-content">
+        <h2>DevBoard</h2>
+        <p>Manage your Freelance Projects with Ease</p>
+      </div>
+    </div>
+
+    <div class="login-form-area">
+      <form [formGroup]="signInForm" (ngSubmit)="onSubmitSignInForm()">
+        <header class="form-header">
+          <h1>Welcome Back</h1>
+          <p>Please enter your details to sign in</p>
+        </header>
+
+        <div class="form-body">
+          <div class="input-group" [class.error]="getEmail().invalid && getEmail().touched">
+            <label for="email">Email Address</label>
+            <div class="input-wrapper">
+              <i class="fa-regular fa-envelope"></i>
+              <input type="email" id="email" formControlName="email" placeholder="name@company.com">
+            </div>
+            <div class="error-message" *ngIf="getEmail().invalid && getEmail().touched">
+              <span *ngIf="getEmail()?.errors?.required">Email is required</span>
+              <span *ngIf="getEmail()?.errors?.email">Please enter a valid email</span>
+            </div>
+          </div>
+
+          <div class="input-group" [class.error]="getPassword().touched && getPassword().invalid">
+            <label for="password">Password</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" id="password" formControlName="password" placeholder="••••••••">
+            </div>
+            <div class="error-message" *ngIf="getPassword().touched && getPassword().invalid">
+              <span *ngIf="getPassword()?.errors?.required">Password is required</span>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn" [disabled]="signInForm.invalid">
+            Sign In
+          </button>
+        </div>
+
+        <footer class="form-footer">
+          <p>Don't have an account? <a routerLink="/signup" style=" color: #1054da;
+    margin-bottom: 2rem;
+    cursor: pointer;">Sign up</a> for free</p>
+        </footer>
+      </form>
+    </div>
+  </div>
+</div>

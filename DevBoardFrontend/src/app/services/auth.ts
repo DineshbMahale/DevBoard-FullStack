@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LoginModel } from '../../models/login.model';
+import { LoginModel } from '../models/login.model';
 import { Observable } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 
