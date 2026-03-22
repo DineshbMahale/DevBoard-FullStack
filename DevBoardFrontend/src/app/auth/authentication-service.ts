@@ -2,12 +2,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environments';
+import {jwtDecode} from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-  userName: string = '';
+  email: string = '';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -16,21 +17,33 @@ export class AuthenticationService {
   }
 
   public get userDetails(): any {
-    return (localStorage.getItem('authToken') || null);
+    return (localStorage.getItem('authToken'));
   }
 
-  public signIn(username: string, password: string) {
-   return this.http.post(`${environment.nodeUri}/signin`, { username, password }, { headers: this.headers });
+  public getUserRole(): string | null {
+    return localStorage.getItem('userRole');
   }
 
-  public signUp(firstName: string, lastName: string, email: string, password: string, roles: any[]) {
-    return this.http.post(`${environment.nodeUri}/signup`, { firstName, lastName, email, password, roles }, { headers: this.headers });
+  public signIn(email: string, password: string) {
+   return this.http.post(`${environment.nodeUri}/login`, { email, password }, { headers: this.headers });
   }
 
-  public saveToken(token: string, role: string) {
-    localStorage.setItem('authToken', token);
-    localStorage.setItem('userRole', role);
+  public signUp(firstName: string, lastName: string, email: string, userName: string, password: string, role: string) {
+    return this.http.post(`${environment.nodeUri}/register`, { firstName, lastName, email, userName, password, role }, { headers: this.headers });
   }
+
+
+  public saveToken(token: string) {
+  localStorage.setItem('authToken', token);
+
+  const decoded: any = jwtDecode(token);
+  const role = decoded['role'] || decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+  const userName = decoded['Name'] || decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+  localStorage.setItem('userRole', role);
+  localStorage.setItem('userName', userName);
+}
+
+
 
   public logOut(){
     localStorage.removeItem('authToken');

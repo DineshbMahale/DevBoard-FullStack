@@ -1,16 +1,15 @@
-
 <div class="dashboard-wrapper">
   <aside class="sidebar">
     <div class="logo">DevBoard</div>
     <nav class="nav-links">
       <a href="#" class="active"><i class="icon"></i> Overview</a>
-      @if(currentUserRole === 'Admin'){
-        <a (click)="showUsersList()"><i class="icon"></i>User List</a>
-        <a href="#"><i class="icon"></i> Analytics</a>
-        <a (click)="GetProjects()"><i class="icon"></i> Projects</a>
+      @if(currentUserRole === 'ADMIN'){
+      <a (click)="showUsersList()"><i class="icon"></i>User List</a>
+      <a href="#"><i class="icon"></i> Analytics</a>
+      <a (click)="GetProjects()"><i class="icon"></i> Projects</a>
       }
-      @if(currentUserRole === 'User'){
-        <a href="#"><i class="icon"></i> Bid for Project</a>
+      @if(currentUserRole === 'USER'){
+      <a href="#"><i class="icon"></i> Bid for Project</a>
       }
       <a href="#"><i class="icon"></i> Settings</a>
     </nav>
@@ -20,8 +19,13 @@
     <header class="top-bar">
       <h1>Dashboard Overview</h1>
       <div class="user-pill">
-        <span><button (click) = "showProfile()">Welcome, Dinesh</button></span>
+        <span><button (click)="showProfile()">Welcome, {{loggedInUser}}</button></span>
+        <!-- ✅ Logout Button -->
+        <button class="logout-btn" (click)="logout()">
+          Logout
+        </button>
       </div>
+
     </header>
 
     <div class="stats-grid">

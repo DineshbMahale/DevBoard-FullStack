@@ -53,6 +53,10 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 /* Stats Cards Grid */
@@ -114,3 +118,48 @@
 
 .badge.success { background: #c6f6d5; color: #22543d; }
 .badge.warning { background: #feebc8; color: #744210; }
+
+/* User Section (Top Right) */
+.user-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Welcome Button */
+.user-pill button {
+  background: transparent;
+  border: none;
+  color: #2d3748;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.user-pill button:hover {
+  text-decoration: underline;
+}
+
+/* Logout Button */
+.logout-btn {
+  padding: 6px 14px;
+  background-color: #e53e3e;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hover Effect */
+.logout-btn:hover {
+  background-color: #c53030;
+  transform: translateY(-1px);
+}
+
+/* Click Effect */
+.logout-btn:active {
+  transform: scale(0.95);
+}

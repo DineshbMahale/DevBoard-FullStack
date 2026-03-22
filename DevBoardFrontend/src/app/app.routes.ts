@@ -19,12 +19,14 @@ export const routes: Routes = [
         path: 'dashboard',
         component: UserDashboard,
         canActivate: [authGuard],
-        data:{roles:['Admin','User']}
+        data:{roles:['ADMIN','USER']}
     },
 
     {
         path: 'profile',
-        component: Profile
+        component: Profile,
+        canActivate: [authGuard],
+        data:{roles:['Admin','User']}
     },
     {
         path:'userList',

@@ -12,8 +12,8 @@
         </div>
 
         <div class="input-group">
-          <label for="secondName">Last Name<span>*</span></label>
-          <input type="text" id="secondName" formControlName="secondName" placeholder="Doe">
+          <label for="lastName">Last Name<span>*</span></label>
+          <input type="text" id="lastName" formControlName="lastName" placeholder="Doe">
         </div>
 
         <div class="input-group">
@@ -55,6 +55,10 @@
             I agree to the <a (click)="openDialog()" class="link">Terms & Conditions</a>
           </span>
         </label>
+      </div>
+      <div>
+        <p>{{signUpForm.valid}}</p>
+        <p>{{ signUpForm.value | json }}</p>
       </div>
 
       <div class="form-actions">

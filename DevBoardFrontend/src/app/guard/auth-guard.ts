@@ -1,15 +1,15 @@
 import { inject } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth';
+import { AuthenticationService } from '../auth/authentication-service';
 
 export const authGuard: CanActivateFn = (route) => {
 
-  const authService = inject(AuthService);
+  const authService = inject(AuthenticationService);
   const router = inject(Router);
-  
-  if(!authService.isLoggedIn()){
-    router.navigate(['/login']);
+
+  if (!authService.isUserLoggedIn) { // ✅ FIXED
+    router.navigate(['/signin']);
     return false;
   }
 
@@ -17,13 +17,13 @@ export const authGuard: CanActivateFn = (route) => {
   const allowedRoles = route.data?.['roles'] ?? [];
 
   if (allowedRoles.length === 0) {
-    return true; // no role restriction 
-  } 
+    return true;
+  }
 
   if (role && allowedRoles.includes(role)) {
     return true;
   }
 
-  router.navigate(['/login']);
+  router.navigate(['/signin']);
   return false;
 };
