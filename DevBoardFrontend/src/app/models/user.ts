@@ -1,6 +1,8 @@
 export interface User {
     id: number,
-    name: string,
+    firstName: string,
+    lastName: string,
     email: string,
-    isActive: boolean
+    userName: string,
+    role: string
 }

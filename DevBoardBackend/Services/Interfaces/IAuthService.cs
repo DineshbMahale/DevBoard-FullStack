@@ -6,6 +6,6 @@ namespace DevBoardBackend.Services.Interfaces
     {
         Task<string> RegisterAsync(RegisterRequestDto dto);
         Task<string> LoginAsync(LoginRequestDto dto);
-        Task<bool> CheckUserExists(RegisterRequestDto dto);
+        Task<bool> CheckUserExists(string dto);
     }
 }

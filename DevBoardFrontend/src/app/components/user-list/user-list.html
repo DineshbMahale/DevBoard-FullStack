@@ -1,9 +1,22 @@
 <div class="user-list-container">
   <div class="list-header">
     <h2>User Directory</h2>
-    <button class="toggle-btn" [class.active-btn]="showInactive" (click)="toggleInactive()">
-      {{ showInactive ? 'Hide Inactive' : 'Show Inactive' }}
-    </button>
+
+    <div class="action-buttons">
+      <button 
+        class="edit-btn" 
+        [disabled]="!selectedUser"
+        (click)="onEdit()">
+        Edit
+      </button>
+
+      <button 
+        class="delete-btn" 
+        [disabled]="!selectedUser || !isAuthorized"
+        (click)="onDelete()">
+        Delete
+      </button>
+    </div>
   </div>
 
   <div class="search-wrapper">
@@ -16,14 +29,14 @@
   </div>
 
   <ul class="user-list">
-    <li *ngFor="let user of users | search:searchText" class="user-item">
-      <div class="user-info" *ngIf="user.isActive || showInactive">
+    <li 
+      *ngFor="let user of users | search:searchText"
+      class="user-item"
+      [class.selected]="selectedUser?.id === user.id"
+      (click)="selectUser(user)"
+    >
+      <div class="user-info">
         <span class="user-name">{{ user.name | capitalize }}</span>
-        
-        <div class="status-group">
-          <span *ngIf="!user.isActive" class="status-badge inactive">Inactive</span>
-          <span *ngIf="user.isActive" class="status-badge active">Active</span>
-        </div>
       </div>
     </li>
   </ul>

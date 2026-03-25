@@ -25,11 +25,11 @@ export class AuthenticationService {
   }
 
   public signIn(email: string, password: string) {
-   return this.http.post(`${environment.nodeUri}/login`, { email, password }, { headers: this.headers });
+   return this.http.post(`${environment.nodeUri}/auth/login`, { email, password }, { headers: this.headers });
   }
 
   public signUp(firstName: string, lastName: string, email: string, userName: string, password: string, role: string) {
-    return this.http.post(`${environment.nodeUri}/register`, { firstName, lastName, email, userName, password, role }, { headers: this.headers });
+    return this.http.post(`${environment.nodeUri}/auth/register`, { firstName, lastName, email, userName, password, role }, { headers: this.headers });
   }
 
 

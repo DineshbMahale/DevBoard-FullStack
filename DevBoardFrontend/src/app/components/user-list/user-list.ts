@@ -17,12 +17,15 @@ export class UserListComponent implements OnInit {
 
   users: User[] = [];
   searchText = '';
-  showInactive = false;
+
+  selectedUser: User | null = null;
+  isAuthorized: boolean = false;
 
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
     this.loadUsers();
+    this.setAuthorization();
   }
 
   loadUsers() {
@@ -36,7 +39,43 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  toggleInactive() {
-    this.showInactive = !this.showInactive;
+  selectUser(user: User) {
+    this.selectedUser = user;
+  }
+
+  onEdit() {
+    if (!this.selectedUser) return;
+
+    console.log('Editing user:', this.selectedUser);
+
+    // 👉 You can navigate or open modal here
+    // example:
+    // this.router.navigate(['/edit-user', this.selectedUser.id]);
+  }
+
+  onDelete() {
+    if (!this.selectedUser) return;
+
+          const confirmDelete = confirm(`Delete ${this.selectedUser.firstName} ${this.selectedUser.lastName}?`);
+          if (!confirmDelete) return;
+
+    this.userService.deleteUser(this.selectedUser.id).subscribe({
+      next: () => {
+        console.log('User deleted');
+
+        // remove from UI
+        this.users = this.users.filter(u => u.id !== this.selectedUser?.id);
+        this.selectedUser = null;
+      },
+      error: (err) => {
+        console.error('Delete failed', err);
+      }
+    });
+  }
+
+  setAuthorization() {
+    // ⚠️ Replace with JWT decode later (best practice)
+    const role = localStorage.getItem('role');
+    this.isAuthorized = role === 'Admin';
   }
 }

@@ -8,4 +8,4 @@ namespace DevBoardBackend.Repositories.Interfaces
         Task<User> CreateAsync(User user);
         Task<List<User>> GetAllAsync();
     }
-}
+}               

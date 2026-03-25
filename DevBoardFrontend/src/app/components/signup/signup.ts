@@ -53,15 +53,10 @@ export class Signup implements OnInit {
       this.signUpForm.value.roles
     ).subscribe({
       next: (res: any) => {
-        // ✅ Store token
         this.authService.saveToken(res.token);
-        // ✅ Optional: decode or store user info
         console.log('JWT Token:', res);
-
-        // ✅ Redirect directly to dashboard
         this.alertService.showSuccess('Registration successful! Redirecting to dashboard...');
         console.log('Registration successful!');
-        
         setTimeout(() => {
           this.router.navigate(['/dashboard']);
         }, 100);

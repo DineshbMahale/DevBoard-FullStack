@@ -47,8 +47,12 @@ export class Signin implements OnInit {
         this.alertService.showSuccess('Login successful!');
       },
       error:(error) =>{
+        if(error.status === 401){
+          this.alertService.showError(error.error.message);
+        }else{
+          this.alertService.showError('An error occurred during sign in. Please try again.');
+        }
         console.error('Error during sign in', error);
-        this.alertService.showError('Sign in failed. Please check your credentials and try again.');
       }
     })
   }

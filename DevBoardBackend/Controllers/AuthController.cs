@@ -30,7 +30,7 @@ namespace DevBoardBackend.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequestDto dto)
         {
-            var userExists = await _service.CheckUserExists(dto);
+            var userExists = await _service.CheckUserExists(dto.email);
 
             if (userExists)
             {
@@ -45,66 +45,16 @@ namespace DevBoardBackend.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequestDto dto)
         {
+            var userExist = await _service.CheckUserExists(dto.email);
+            if (!userExist)
+            {
+                return Unauthorized(new { message = "Invalid email or password. Please try again." });
+            }
+
             var token = await _service.LoginAsync(dto);
             return Ok(new { token });
         }
-        //creating a demo user list 
-        //List<User> users = new List<User>()
-        //{
-        //     new User{ Id=1, FirstName="Admin", LastName="Raja", Email="admin@gmail.com", Username="admin", Password="123456", Role="Admin"},
-        //     new User{ Id=2, FirstName="User", LastName="Bhai", Email="user@gmail.com", Username="user", Password="123456R", Role="User"}
-
-        //};
-
-
-        //[HttpPost("signin")]
-        //public IActionResult SignIn([FromBody] LoginRequest request)
-        //{
-
-        //    var user = users.FirstOrDefault(u => u.Email == request.Email && u.Password == request.Password);
-
-        //    if(user == null)
-        //    {
-        //        return Unauthorized("Invalid Credentials");
-        //    }
-
-        //        var token = GenerateJwtToken(user);
-        //        return Ok(new
-        //        {
-        //            token = token,
-        //            role = user.Role
-        //        }); 
-        //}
-
-        //private string GenerateJwtToken(User user)
-        //{
-        //    var jwtSettings = _config.GetSection("Jwt");
-
-        //    var key = new SymmetricSecurityKey(
-        //            Encoding.UTF8.GetBytes(jwtSettings["Key"]));
-
-        //    var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-        //    var claims = new[]
-        //    {
-        //        new Claim(ClaimTypes.Name, user.Username),
-        //        new Claim(ClaimTypes.Role, user.Role)
-        //    };
-
-        //    var token = new JwtSecurityToken(
-        //        issuer: jwtSettings["Issuer"],
-        //        audience: jwtSettings["Audience"],
-        //        claims: claims,
-
-        //        expires: DateTime.Now.AddMinutes(Convert.ToDouble(jwtSettings["DurationInMinutes"])),
-
-        //        signingCredentials: cred
-
-        //        );
-
-        //    return new JwtSecurityTokenHandler().WriteToken(token);
-        //}
-
+        
 
 
         //[Authorize(Roles = "Admin")]

@@ -22,6 +22,12 @@ export class AlertComponent implements OnDestroy {
   constructor(private alertService: AlertService) {
     this.sub = this.alertService.alert$.subscribe((res) => {
       this.alert = res;
+
+      if(res.show){
+        setTimeout(() => {
+          this.alertService.clear();
+        }, 2000);
+      }
     });
   }
 
